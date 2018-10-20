@@ -23,9 +23,6 @@ def hello():
     data = [[random.randint(0,1000),random.randint(0,600),random.randint(0,20)] for i in range(800)]
     return render_template(
         'index.html',data=data)
-@socketio.on("joystick", namespace="/test")    
-def steering(message):
-	print(message)
- #thread.flow[message["motor"]]=message["value"]thon 
+         
 if __name__ == "__main__":
-    socketio.run(app,host="0.0.0.0",debug=True)
+    socketio.run(app,host="0.0.0.0")

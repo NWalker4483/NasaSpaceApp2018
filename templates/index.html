@@ -34,7 +34,7 @@ function get(id) {
     return document.getElementById(id);
 }
 var data = {{data}};
-var heat = simpleheat('canvas').data(data).max(18),
+var heat = simpleheat('canvas').data(data).max(20),
     frame;
 
 function draw() {
@@ -47,14 +47,15 @@ function draw() {
 draw();
 
 get('canvas').onmousemove = function (e) {
-    heat.add([e.layerX, e.layerY, 0]);
+    heat.add([e.layerX, e.layerY, 1]);
     frame = frame || window.requestAnimationFrame(draw);
-    socket.emit('joystick', {e});
+    draw()
 };
 
 socket.on('geo_update', function(msg) {
     heat.add([msg[0], msg[1], msg[2]]); //Convert msg to object
     frame = frame || window.requestAnimationFrame(draw);
+    draw();
 	});
 
 var radius = get('radius'),
