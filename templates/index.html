@@ -47,14 +47,13 @@ function draw() {
 draw();
 
 get('canvas').onmousemove = function (e) {
-    heat.add([e.layerX, e.layerY, 1]);
+    heat.add([e.layerX, e.layerY, 0]);
     frame = frame || window.requestAnimationFrame(draw);
-    console.log(e);
+    socket.emit('joystick', {e});
 };
 
 socket.on('geo_update', function(msg) {
-    //$('#'+msg.data[0]+'a').html(msg.data[0]+': '+msg.data[1]);
-    heat.add([e.layerX, e.layerY, 1]);
+    heat.add([msg[0], msg[1], msg[2]]); //Convert msg to object
     frame = frame || window.requestAnimationFrame(draw);
 	});
 
