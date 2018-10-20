@@ -9,7 +9,7 @@ class SensorNodeHandler(Thread):
         self.port = UDP_PORT
         self.latitude = latitude
         self.longitude = longitude
-        #self.socket=Socket
+        self.socket=Socket
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.bind((UDP_IP, UDP_PORT))
 
@@ -17,15 +17,10 @@ class SensorNodeHandler(Thread):
         while True:
             time.sleep(0.1)
             data, _ = self.sock.recvfrom(1024)	
-            
             line = data.strip().decode('ascii').split(',')
-            print(line)
+            line = [float(i) for i in line]
             if len(line) == 3:
                 print(line)
-                #flowstr = str(self.flow[i])
-                #flowstr = flowstr.replace("{","")
-                #flowstr = flowstr.replace("}","")
-                #flowstr = flowstr.replace('"',"")
                 #self.socket.emit("geo_update",
                             #{"data":line},
                             #namespace="/")
