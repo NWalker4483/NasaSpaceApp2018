@@ -1,17 +1,23 @@
+
+import numpy as np
 import matplotlib.pyplot as plt
-# draw the figure so the animations will work
-fig = plt.gcf()
-fig.show()
-fig.canvas.draw()
-x=[0]
-y=[0]
-while True:
-    # compute something
-    plt.plot(x, y) # plot something
-    x.append(x[-1]+1)
-    y.append(y[-1]+1)
-    # update canvas immediately
-    plt.xlim([0, 100])
-    plt.ylim([0, 100])
-    plt.pause(0.2)  # I ain't needed!!!
-    fig.canvas.draw()
+import matplotlib.cm as cm
+import time
+import matplotlib.animation as animation
+
+NUMBER_X: int = 1
+NUMBER_Y: int = 1
+
+CANVAS_WIDTH:  int = 100
+CANVAS_HEIGHT: int = 100
+
+def heatmap_animation1():
+    fig, ax_lst = plt.subplots(NUMBER_X, NUMBER_Y)
+    ax_lst = ax_lst
+
+    def plot(data):
+        data = np.random.rand(CANVAS_WIDTH, CANVAS_HEIGHT)
+        ax_lst.pcolor(data) #Heatmap
+    ani = animation.FuncAnimation(fig, plot, interval=1)
+    plt.show()
+heatmap_animation1()

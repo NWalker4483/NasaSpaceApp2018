@@ -11,13 +11,13 @@ class SensorNodeHandler(Thread):
         self.latitude = latitude
         self.longitude = longitude
         self.data = []
-        self.socket = Socket
+        #self.socket = Socket
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.sock.bind((UDP_IP, UDP_PORT))
 
     def run(self):
         while True:
-            time.sleep(1)
+            time.sleep(.75)
             data, _ = self.sock.recvfrom(1024)	
             line = data.strip().decode('ascii').split(',')
             line = [float(i) for i in line]
@@ -29,13 +29,12 @@ class SensorNodeHandler(Thread):
                             {"data":(self.latitude,
                                 self.longitude,
                                 line[2]*2)},
-                            namespace="/")"""
+                            namespace="/")
+                            """
             else:
                 print("received incomplete UCP packet from android IMU")
 if __name__ == "__main__":
     Test = SensorNodeHandler("192.168.43.14",5000)
-    Test2 = SensorNodeHandler("192.168.43.14",5001)
     Test.start()
-    Test2.start()
-    Test2.run()
+
     

@@ -4,6 +4,8 @@ from flask_socketio import SocketIO, emit
 from NodeStuff import SensorNodeHandler
 
 import random
+class SensorNodeCluster:
+        pass
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret!"
