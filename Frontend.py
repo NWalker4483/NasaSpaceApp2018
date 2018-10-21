@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import matplotlib.animation as animation
 from itertools import combinations
-import cv2
+#import cv2
 
 class HazardMap:
     def __init__(self,RADES,size=(100,100)):
@@ -13,9 +13,9 @@ class HazardMap:
         self.plt = plt
         self.fig, self.ax = self.plt.subplots(1, 1)
 
-        self.map = cv2.imread("unnamed.jpg")
-        self.map =  (cv2.cvtColor(cv2.resize(self.map, (size[0], size[1])), cv2.COLOR_BGR2RGB))
-        self.plt.imshow(self.map)
+        #self.map = cv2.imread("unnamed.jpg")
+        #self.map =  (cv2.cvtColor(cv2.resize(self.map, (size[0], size[1])), cv2.COLOR_BGR2RGB))
+        #self.plt.imshow(self.map)
         self.ani = animation.FuncAnimation(self.fig, self.plot, interval=1)
         self.plt.show()
 
@@ -26,7 +26,7 @@ class HazardMap:
         return (abs(point1[0]-point2[0])**2+abs(point1[1]-point2[1])**2)**.5 # The Distance Formula
         
     def plot(self,data):
-        self.plt.imshow(self.map) # Redraw Background image 
+        #self.plt.imshow(self.map) # Redraw Background image 
         self.pull_sensors_data() # Update Internal Data Matrix 
         data = self.__data # Update Plot Values
         self.ax.pcolorfast(data,cmap = "jet",alpha = .4, animated = True) # Color Heatmap
