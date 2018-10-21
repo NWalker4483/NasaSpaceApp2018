@@ -4,6 +4,7 @@ import time
 import matplotlib.animation as animation
 from itertools import combinations
 import cv2
+from threading import Thread
 
 from NodeStuff import SensorNodeCluster
 
@@ -64,9 +65,6 @@ class MultiLineSensorPlot:
         self.ax1 = self.fig.add_subplot(1,1,1)
         self.ani = animation.FuncAnimation(self.fig, self.plot, interval=500)
         self.plt.show()
-
-        
-
 
     def plot(self,i):
             if(len(self.steps) <= self.max_view):
