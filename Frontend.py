@@ -36,9 +36,12 @@ class HazardMap:
 
     def pull_sensors_data(self):
         for node in self.__RADES:
-            rads = node.data['rads']
-            for x2,y2 in self.get_neighbors([node.latitude,node.longitude],rads):
-                distance = self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
+            self.update_rads(node)
 
-                self.__data[x2][y2] += rads/(distance if distance != 0 else 1)
-            self.__data[node.latitude][node.longitude] += rads
+    def update_rads(self,node):
+        rads = node.data['rads']
+        for x2,y2 in self.get_neighbors([node.latitude,node.longitude],rads):
+            distance = self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
+
+            self.__data[x2][y2] += rads/(distance if distance != 0 else 1)
+        self.__data[node.latitude][node.longitude] += rads
