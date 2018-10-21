@@ -39,6 +39,7 @@
 * Scalable long range application as long as line of sight is met. 
 
 ## Links
+* [Cad Files](https://myhub.autodesk360.com/ue2922a95/data/permalink/DTa9460QT04a05659b2108a74e9ba99467e7)
 * https://github.com/mourner/simpleheat
 * https://www.simplicity.be/article/transferring-sensor-readings-over-websockets/
 * [WebSockets Tutorial](https://www.toptal.com/tornado/simple-python-websocket-server)
