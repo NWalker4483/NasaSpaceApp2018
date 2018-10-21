@@ -30,11 +30,12 @@ class SensorNodeHandler(Thread):
                                 self.longitude,
                                 line[2]*2)},
                             namespace="/")
-                            """
+                """"
+                            
             else:
                 print("received incomplete UCP packet from android IMU")
 if __name__ == "__main__":
-    Test = SensorNodeHandler("192.168.43.14",5000)
+    Test = SensorNodeHandler("10.99.96.134",5000)
     Test.start()
 
     
