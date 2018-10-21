@@ -2,6 +2,11 @@ from threading import Thread
 import time 
 import socket 
 import random
+
+class SensorNodeCluster:
+    def __init__(self,RADES):
+        self.__RADES = RADES
+
 class SensorNodeHandler(Thread):
     def __init__(self, UDP_IP = "192.168.43.14", UDP_PORT = 5000, latitude = 0, longitude = 0, debug = False):
         Thread.__init__(self)
@@ -15,6 +20,7 @@ class SensorNodeHandler(Thread):
         if self.debug == False:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.sock.bind((UDP_IP, UDP_PORT))
+        self.start()
     def get_sensors(self):
         while True:
             data, _ = self.sock.recvfrom(1024)	
