@@ -7,7 +7,7 @@ import cv2
 
 class HazardMap:
     def __init__(self,RADES,size=(100,100)):
-        self.__data = np.array([[1,]*size[0] for i in range(size[1])])
+        self.__data = np.array([[0,]*size[0] for i in range(size[1])])
         self.__RADES = RADES
         self.size = size
         self.plt = plt
@@ -29,7 +29,7 @@ class HazardMap:
         self.plt.imshow(self.map) # Redraw Background image 
         self.pull_sensors_data() # Update Internal Data Matrix 
         data = self.__data # Update Plot Values
-        self.ax.pcolorfast(data,cmap = "jet",alpha = .4, animated = True) # Color Heatmap
+        self.ax.pcolorfast(data,cmap = "jet",alpha = .6, animated = True) # Color Heatmap
         self.reset() # Reset Map Data
 
     def get_neighbors(self,node,rads):
