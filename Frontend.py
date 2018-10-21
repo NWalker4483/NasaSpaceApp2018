@@ -18,8 +18,8 @@ class HazardMap:
     def reset(self):
         self.__data = np.array([[0,]*self.size[0] for i in range(self.size[1])])
 
-    def euclidean_distance(self,node1, node2):
-        return (abs(node1[0]-node2[0])**2+abs(node1[1]-node2[1])**2)**.5
+    def euclidean_distance(self,point1, point2):
+        return (abs(point1[0]-point2[0])**2+abs(point1[1]-point2[1])**2)**.5
         
     def plot(self,data):
         self.pull_sensors_data()
