@@ -12,7 +12,7 @@ class HazardMap:
         self.size = size
         self.plt = plt
         self.fig, self.ax = self.plt.subplots(1, 1)
-        
+
         self.map = cv2.imread("unnamed.jpg")
         self.map =  (cv2.cvtColor(cv2.resize(self.map, (size[0], size[1])), cv2.COLOR_BGR2RGB))
         self.plt.imshow(self.map)
@@ -34,10 +34,10 @@ class HazardMap:
 
     def get_neighbors(self,node,rads):
         neigh=set()
-        for y, x in combinations(list(range(-(rads//2),(rads//2)+1))*2, 2):
-            if (0<=(node[0]+y)<self.size[1]) and (0<=(node[1]+x)<self.size[0]):
-                neigh.add((node[0]+y,node[1]+x))
-        return neigh
+        for y, x in combinations(list(range(-(rads//2),(rads//2)+1))*2, 2): # Get Affected Neighors
+            if (0 <= (node[0]+y) < self.size[1]) and (0 <= (node[1]+x) < self.size[0]): #Check that neighbor is In-bound of viewer
+                neigh.add((node[0]+y,node[1]+x)) # Add Neighbor
+        return neigh # Return Neighbors 
 
     def pull_sensors_data(self):
         for node in self.__RADES:

@@ -17,12 +17,12 @@ class SensorNodeHandler(Thread):
             self.sock.bind((UDP_IP, UDP_PORT))
     def get_sensors(self):
         while True:
-            time.sleep(.75)
             data, _ = self.sock.recvfrom(1024)	
             line = data.strip().decode('ascii').split(',')
             line = [float(i) for i in line]
             if len(line) == 3:
-                self.data['rads'] = line[2]*2
+                print(line)
+                self.data['rads'] = int(line[0]//100)
             else:
                 print("received incomplete UCP packet from android IMU")
     def test_sensors(self):
