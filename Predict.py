@@ -1,18 +1,22 @@
-from sklearn.svm import LinearSVC
-from sklearn.datasets import make_classification
-X, y = make_classification(n_features=4, random_state=0)
-clf = LinearSVC(random_state=0, tol=1e-5)
-clf.fit(X, y)
+import main
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from matplotlib import style
 
-LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-    intercept_scaling=1, loss='squared_hinge', max_iter=1000,
-    multi_class='ovr', penalty='l2', random_state=0, tol=1e-05, verbose=0)
 
-print(clf.coef)
+style.use("fivethirtyeight")
 
-print(clf.intercept_)
+fig = plt.figure()
+ax1 = fig.add_subplot(1,1,1)
 
-print(clf.predict([[0, 0, 0, 0]]))
+def animate(i):
+    #data
+    nodes = main.nodes
+    node1 = nodes[0]
+    node2 = nodes[1]
+    node3 = nodes[2]
 
-def StormTrainer():
-    pass
+
+
+
+
