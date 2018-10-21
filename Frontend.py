@@ -38,4 +38,6 @@ class HazardMap:
             rads = node.data['rads']
             self.__data[node.latitude][node.longitude] += rads
             for x2,y2 in self.get_neighbors([node.latitude,node.longitude],rads):
-                self.__data[x2][y2] += (rads//2) - self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
+                distance = self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
+
+                self.__data[x2][y2] += rads/(distance if distance != 0 else 1)

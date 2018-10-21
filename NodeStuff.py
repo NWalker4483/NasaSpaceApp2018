@@ -10,18 +10,19 @@ class SensorNodeHandler(Thread):
         self.port = UDP_PORT
         self.latitude = latitude
         self.longitude = longitude
-        self.data = {}
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.bind((UDP_IP, UDP_PORT))
+        self.data = {"rads":0}
+        #self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        #self.sock.bind((UDP_IP, UDP_PORT))
 
     def run(self):
         while True:
             time.sleep(.75)
-            data, _ = self.sock.recvfrom(1024)	
-            line = data.strip().decode('ascii').split(',')
-            line = [float(i) for i in line]
+            #data, _ = self.sock.recvfrom(1024)	
+            #line = data.strip().decode('ascii').split(',')
+            #line = [float(i) for i in line]
+            line='asd'
             if len(line) == 3:
-                self.data['rads'] = line[2]*2
+                self.data['rads'] = random.randint(0,20)#line[2]*2
             else:
                 print("received incomplete UCP packet from android IMU")
 if __name__ == "__main__":
