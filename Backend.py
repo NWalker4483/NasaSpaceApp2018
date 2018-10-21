@@ -6,7 +6,6 @@ from NodeStuff import SensorNodeHandler
 import random
 class SensorNodeCluster:
         pass
-
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret!"
 app.config["TEMPLATES_AUTO_RELOAD"] = True
