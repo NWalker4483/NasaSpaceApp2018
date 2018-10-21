@@ -72,7 +72,7 @@ class MultiLineSensorPlot:
                 for sense_data in self.data_over_time:
                     self.ax1.plot(self.steps, sense_data)
                     self.plt.xlabel("time(s)")
-                    self.plt.ylablel("radiation abosorbed dose(Gray)")
+                    self.plt.ylabel("radiation abosorbed dose(Gray)")
                     self.plt.title("Rads-t graph")
                 for i in range(len(self.__RADES)):
                     self.data_over_time[i].pop(0)
