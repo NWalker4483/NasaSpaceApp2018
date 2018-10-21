@@ -24,7 +24,7 @@ class HazardMap:
     def plot(self,data):
         self.pull_sensors_data()
         data = self.__data
-        self.ax.pcolorfast(data,cmap="gist_ncar") # Heatmap
+        self.ax.pcolorfast(data,cmap="jet") # Heatmap
         self.reset() # Reset Map Data
 
     def get_neighbors(self,node,rads):
@@ -40,8 +40,8 @@ class HazardMap:
 
     def update_rads(self,node):
         rads = node.data['rads']
-        for x2,y2 in self.get_neighbors([node.latitude,node.longitude],rads):
-            distance = self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
+        for x2,y2 in self.get_neighbors([node.longitude,node.latitude],rads):
+            distance = self.euclidean_distance([node.longitude,node.latitude],[x2,y2])
 
-            self.__data[x2][y2] += rads/(distance if distance != 0 else 1)
-        self.__data[node.latitude][node.longitude] += rads
+            self.__data[x2][y2] += 6*(rads/(distance if distance != 0 else 1))
+        self.__data[node.longitude][node.latitude] += rads
