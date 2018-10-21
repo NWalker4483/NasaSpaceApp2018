@@ -8,7 +8,7 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
     intercept_scaling=1, loss='squared_hinge', max_iter=1000,
     multi_class='ovr', penalty='l2', random_state=0, tol=1e-05, verbose=0)
 
-print(clf.coef_)
+print(clf.coef)
 
 print(clf.intercept_)
 

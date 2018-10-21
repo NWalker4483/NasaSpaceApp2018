@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import time
 import matplotlib.animation as animation
 from itertools import combinations
+import cv2
 
 class HazardMap:
     def __init__(self,RADES,size=(100,100)):
@@ -11,7 +12,10 @@ class HazardMap:
         self.size = size
         self.plt = plt
         self.fig, self.ax = self.plt.subplots(1, 1)
-
+        #self.ax.imshow()
+        f = cv2.imread("unnamed.jpg")
+        f =  cv2.resize(f, (100, 100)) 
+        plt.imshow(f)
         self.ani = animation.FuncAnimation(self.fig, self.plot, interval=1)
         self.plt.show()
 
@@ -24,7 +28,7 @@ class HazardMap:
     def plot(self,data):
         self.pull_sensors_data()
         data = self.__data
-        self.ax.pcolorfast(data,cmap="jet") # Heatmap
+        self.ax.pcolorfast(data,cmap = "jet",alpha = .3) # Heatmap
         self.reset() # Reset Map Data
 
     def get_neighbors(self,node,rads):
