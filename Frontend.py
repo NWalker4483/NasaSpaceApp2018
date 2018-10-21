@@ -12,23 +12,24 @@ class HazardMap:
         self.size = size
         self.plt = plt
         self.fig, self.ax = self.plt.subplots(1, 1)
-        #self.ax.imshow()
-        f = cv2.imread("unnamed.jpg")
-        f =  cv2.resize(f, (100, 100)) 
-        plt.imshow(f)
+        
+        self.map = cv2.imread("unnamed.jpg")
+        self.map =  (cv2.cvtColor(cv2.resize(self.map, (size[0], size[1])), cv2.COLOR_BGR2RGB))
+        self.plt.imshow(self.map)
         self.ani = animation.FuncAnimation(self.fig, self.plot, interval=1)
         self.plt.show()
 
     def reset(self):
-        self.__data = np.array([[0,]*self.size[0] for i in range(self.size[1])])
-
+        self.__data = np.array([[0,]*self.size[0] for i in range(self.size[1])]) # Reset Internal Data Matrix
+        
     def euclidean_distance(self,point1, point2):
-        return (abs(point1[0]-point2[0])**2+abs(point1[1]-point2[1])**2)**.5
+        return (abs(point1[0]-point2[0])**2+abs(point1[1]-point2[1])**2)**.5 # The Distance Formula
         
     def plot(self,data):
-        self.pull_sensors_data()
-        data = self.__data
-        self.ax.pcolorfast(data,cmap = "jet",alpha = .3) # Heatmap
+        self.plt.imshow(self.map) # Redraw Background image 
+        self.pull_sensors_data() # Update Internal Data Matrix 
+        data = self.__data # Update Plot Values
+        self.ax.pcolorfast(data,cmap = "jet",alpha = .4, animated = True) # Color Heatmap
         self.reset() # Reset Map Data
 
     def get_neighbors(self,node,rads):
