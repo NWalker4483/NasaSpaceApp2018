@@ -48,11 +48,11 @@ class HazardMap:
 
     def update_rads(self,node):
         rads = node.data['rads']
-        for x2,y2 in self.get_neighbors([node.longitude,node.latitude],rads):
-            distance = self.euclidean_distance([node.longitude,node.latitude],[x2,y2])
+        for x2,y2 in self.get_neighbors([node.latitude,node.longitude],rads):
+            distance = self.euclidean_distance([node.latitude,node.longitude],[x2,y2])
 
             self.__data[x2][y2] += 6*(rads/(distance if distance != 0 else 1))
-        self.__data[node.longitude][node.latitude] += rads
+        self.__data[node.latitude][node.longitude] += rads
 
 class MultiLineSensorPlot:
     def __init__(self,RADES):
