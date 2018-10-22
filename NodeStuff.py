@@ -23,7 +23,7 @@ class SensorNodeHandler(Thread):
         self.start()
     def get_sensors(self):
         while True:
-            data, _ = self.sock.recvfrom(1024)	
+            data, _ = self.sock.recvfrom(2048)	
             line = data.strip().decode('ascii').split(',')
             line = [float(i) for i in line]
             if len(line) == 3:
